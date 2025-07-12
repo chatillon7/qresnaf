@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR EsnaF</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.cdnfonts.com/css/telegraf" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/garet" rel="stylesheet">
+	<link href="assets/img/logo.png" rel="icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'qr-blue': '#1e3a8a',
+                        'qr-orange': '#f97316',
+                        'qr-red': '#dc2626',
+                        'qr-green': '#16a34a'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-bg {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        }
+        .dark .hero-bg {
+            background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+        }
+        .feature-bg {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        }
+        .dark .feature-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
+        }
+        .plan-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Dark Mode Toggle Button */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #111d3c 0%, #000000 100%);
+            border: none;
+            cursor: pointer;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .dark .dark-mode-toggle {
+            background: linear-gradient(135deg, #9ec8ef 0%, #295f91 100%);
+        }
+        
+        /* Dark mode transitions */
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Solution Cards Hover Animation */
+        .solution-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .solution-card:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .dark .solution-card:hover {
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1e3a8a 0%, #22c55e 100%);
+            border: none;
+            cursor: pointer;
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(100px);
+        }
+        
+        /* Infrastructure Links Hover Animation */
+        .infrastructure-link {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .infrastructure-link:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .dark .infrastructure-link:hover {
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .back-to-top:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .dark .back-to-top {
+            background: linear-gradient(135deg, #1e3a8a 0%, #16a34a 100%);
+        }
+        
+        /* Image Protection Styles */
+        .protected-image {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+            pointer-events: none;
+        }
+        
+        /* Disable right-click context menu */
+        .no-context {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        /* Overlay protection for images */
+        .image-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 10;
+            pointer-events: all;
+        }
+        
+        /* Font Override - FORCE APPLICATION */
+        * {
+            font-family: 'Garet', sans-serif !important;
+        }
+        
+        h1, h2, h3, h4, h5, h6, .heading, button, a {
+            font-family: 'Telegraf', serif !important;
+            font-weight: 900 !important;
+            letter-spacing: -0.5px !important;
+        }
+    </style>
+</head>
+<body class="font-opensans dark:bg-gray-900 dark:text-white" style="font-family: 'Open Sans', sans-serif;">
+    <!-- Dark Mode Toggle Button -->
+    <button class="dark-mode-toggle float-animation" onclick="toggleDarkMode()" id="darkModeToggle">
+        🌖
+    </button>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top float-animation" onclick="scrollToTop()" id="backToTop">
+        ↑
+    </button>
+
+    <!-- Hero Section -->
+    <section class="hero-bg pt-16 pb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-center items-center mb-12">
+                <div class="image-container">
+                    <img class="h-32 w-auto dark:hidden float-animation protected-image" style="animation-delay: 0.5s;" src="assets/img/logo_siyah.png" alt="QR EsnaF Logo">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="image-container">
+                    <img class="h-32 w-auto hidden dark:block float-animation protected-image" style="animation-delay: 0.5s;" src="assets/img/logo_beyaz.png" alt="QR EsnaF Logo">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                        Teknolojiye yabancı olmak zorunda değilsiniz
+                    </h1>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+                        QR EsnaF ile büyümeye başlayın
+                    </p>
+                    <a href="#prices" class="bg-qr-blue text-white px-16 py-3 rounded-lg shadow-lg text-lg font-medium hover:bg-blue-100 hover:text-qr-blue transition duration-300">
+                        Başla
+                    </a>
+                    
+                    <!-- QR Code -->
+                    <div class="mt-8">
+                        <div class="bg-white p-1 rounded-lg shadow-lg inline-block image-container">
+                            <img src="assets/img/qrkod_whatsapp.png" alt="QR Code" class="w-32 h-32 protected-image">
+                            <div class="image-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hero Image -->
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-blue-100 to-blue-200 rounded-3xl p-8 dark:bg-gradient-to-br dark:from-blue-950 dark:to-blue-650">
+                        <div>
+                            <div class="bg-white rounded-2xl p-6 shadow-xl dark:bg-gray-800">
+                                <div class="w-16 h-16 bg-blue-100 dark:bg-blue-950 rounded-full flex items-center justify-center mb-4">
+                                    <span class="text-white text-2xl image-container">
+                                        <img src="assets/img/art_1.png" alt="Art" class="protected-image">
+                                        <div class="image-overlay"></div>
+                                    </span>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="h-4 bg-gray-200 dark:bg-blue-950 rounded"></div>
+                                    <div class="h-4 bg-gray-200 dark:bg-blue-950 rounded"></div>
+                                    <div class="h-4 bg-gray-200 dark:bg-blue-950 rounded w-3/4"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating Elements -->
+                        <div class="absolute top-4 right-4 bg-qr-red rounded-full w-8 h-8 float-animation" style="animation-delay: 0.5s;"></div>
+                        <div class="absolute bottom-8 left-4 bg-yellow-400 rounded-full w-6 h-6 float-animation" style="animation-delay: 1s;"></div>
+                        <div class="absolute top-1/2 right-8 bg-qr-green rounded-full w-4 h-4 float-animation" style="animation-delay: 1.5s;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Feature 1 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+                <div class="feature-bg rounded-3xl p-8">
+                    <div class="bg-white dark:bg-gray-700 rounded-2xl p-6 shadow-xl">
+                            <div class="image-container flex justify-center items-center">
+                                <img src="assets/img/art_6.png" class="w-1/2 protected-image" alt="Art">
+                                <div class="image-overlay"></div>
+                            </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6" style="font-family: 'Roboto', sans-serif !important; font-weight: 900 !important;">
+                        İhtiyacınıza göre sanal uygulamalarımıza göz atın
+                    </h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-4" style="font-family: 'Open Sans', sans-serif !important;">
+                        Berber dükkanınız veya dövmeci stüdyonuz mu var, siz
+                        dükkanda değilken bile randevuları otomatikleştirin.
+                        Çalışma günlerinden saatlerine kadar hepsini ayarlayın.
+                    </p>
+                    <p class="text-lg text-gray-600 dark:text-gray-300" style="font-family: 'Open Sans', sans-serif !important;">
+                        Lokantanız veya yerel kafeniz mi var, yeterince menü
+                        basılmadı mı, yeterli sayıda garson yok mu, bu sorunları
+                        sanal menü ile çözün.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+                <div class="order-2 lg:order-1">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                        Rahat bir şekilde işletmenizi sanal dünyaya açın ve yönetin
+                    </h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">
+                        Sanal işletmeniz için belirleyeceğiniz uygulamayı
+                        şekillendirmek çok kolay. İster kullanıcı dostu yönetici
+                        paneli üzerinden gerçekleştirin, ister bize bırakın.
+                    </p>
+                    <p class="text-lg text-gray-600 dark:text-gray-300">
+                        İşletmenizi sanal aleme taşıdınız ama kişiselleştirdiniz mi?
+                        Biz bu sorunların hepsine çözüm getirdik ve en önemlisi
+                        bu çözüm kolay bir şekilde.
+                    </p>
+                </div>
+                
+                <div class="order-1 lg:order-2">
+                    <div class="bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded-3xl p-8">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg">
+                                <div class="w-12 h-12 bg-transparent rounded-lg mb-3 image-container">
+                                    <img src="assets/img/art_2.png" alt="Art" class="protected-image">
+                                    <div class="image-overlay"></div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="h-3 bg-gray-200 dark:bg-gray-600 rounded"></div>
+                                    <div class="h-3 bg-gray-200 dark:bg-gray-600 rounded w-2/3"></div>
+                                </div>
+                            </div>
+                            <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg">
+                                <div class="w-12 h-12 bg-transparent rounded-lg mb-3 image-container">
+                                    <img src="assets/img/art_3.png" alt="Art" class="protected-image">
+                                    <div class="image-overlay"></div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="h-3 bg-gray-200 dark:bg-gray-600 rounded"></div>
+                                    <div class="h-3 bg-gray-200 dark:bg-gray-600 rounded w-2/3"></div>
+                                </div>
+                            </div>
+                            <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg">
+                                <div class="w-12 h-12 bg-transparent rounded-lg mb-3 image-container">
+                                    <img src="assets/img/art_4.png" alt="Art" class="protected-image">
+                                    <div class="image-overlay"></div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="h-3 bg-gray-200 dark:bg-gray-600 rounded"></div>
+                                    <div class="h-3 bg-gray-200 dark:bg-gray-600 rounded w-2/3"></div>
+                                </div>
+                            </div>
+                            <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg">
+                                <div class="w-12 h-12 bg-transparent rounded-lg mb-3 image-container">
+                                    <img src="assets/img/art_7.png" alt="Art" class="protected-image">
+                                    <div class="image-overlay"></div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="h-3 bg-gray-200 dark:bg-gray-600 rounded"></div>
+                                    <div class="h-3 bg-gray-200 dark:bg-gray-600 rounded w-2/3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 rounded-3xl p-8">
+                    <div class="bg-white dark:bg-gray-700 rounded-2xl p-6 shadow-xl">
+                        <div class="image-container flex justify-center items-center">
+                            <img src="assets/img/art_5.png" class="w-1/2 protected-image" alt="Art">
+                            <div class="image-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                        Kişiselleştirin, şans verin, karşılığını alın
+                    </h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">
+                        İşletmenizi yeni çağa ayak uyduracak şekilde sanal aleme
+                        taşıyın, güncellemelerden uzak kalmayın. Her bütçeye
+                        uygun iş çıkartacağımızın sözünü biz kendimize verdik.
+                    </p>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">
+                        Kolaylık, erişilebilirlik ve en önemlisi güvenliği kendimize
+                        şart edindik. Tüm sanal uygulamalarımız teknik anlamda
+                        güvenliği sağlayacağını garanti eder.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="py-16 bg-gray-900 dark:bg-gray-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4">
+                    QR EsnaF çözümleriyle süreçlerinizi kolaylaştırın
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+                <a href="https://karadenizberber.vercel.app/" target="_blank" rel="noopener" rel="noreferrer" class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block">
+                    <div class="w-16 h-16 bg-blue-600 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-white text-2xl">📊</span>
+                    </div>
+                    <h3 class="text-white font-medium mb-2">Sanal Randevu Uygulaması</h3>
+                </a>
+                
+                <a href="https://tr-qr-menu.vercel.app/" target="_blank" rel="noopener" rel="noreferrer" class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block">
+                    <div class="w-16 h-16 bg-green-600 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-white text-2xl">📋</span>
+                    </div>
+                    <h3 class="text-white font-medium mb-2">Sanal Menü Uygulaması</h3>
+                </a>
+                
+                <a href="#solutions" rel="noopener" rel="noreferrer" class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block">
+                    <div class="w-16 h-16 bg-red-600 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-white text-2xl">🚗</span>
+                    </div>
+                    <h3 class="text-white font-medium mb-2">Sanal Garaj Uygulaması (Yakında)</h3>
+                </a>
+                
+                <a href="#solutions" rel="noopener" rel="noreferrer" class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block">
+                    <div class="w-16 h-16 bg-purple-600 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-white text-2xl">📈</span>
+                    </div>
+                    <h3 class="text-white font-medium mb-2">Sanal Biyografi Uygulaması (Yakında)</h3>
+                </a>
+                
+                <a href="#solutions" rel="noopener" rel="noreferrer" class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block">
+                    <div class="w-16 h-16 bg-yellow-600 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-white text-2xl">🛍️</span>
+                    </div>
+                    <h3 class="text-white font-medium mb-2">Sanal Mağaza Uygulaması (Yakında)</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="prices" class="py-16 bg-white dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                    İşletmenize uygun bir plan seçin
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Monthly Plan -->
+                <div class="bg-white dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-2xl p-8 relative">
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">750₺</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">Aylık Paket</p>
+                        
+                        <ul class="space-y-3 mb-8 text-left">
+                            <li class="flex items-center">
+                                <span class="text-green-500 mr-3">✓</span>
+                                <span class="text-gray-600 dark:text-gray-300">1 Aylık Sanal Menü veya Sanal Randevu Uygulaması</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-green-500 mr-3">✓</span>
+                                <span class="text-gray-600 dark:text-gray-300">1 Aylık Uygulamanıza Özel Yönetici Paneli</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-green-500 mr-3">✓</span>
+                                <span class="text-gray-600 dark:text-gray-300">1 Aylık İşletmenize Özel Subdomain</span>
+                            </li>
+                        </ul>
+                        
+                        <button class="w-full bg-gray-900 dark:bg-gray-600 text-white py-3 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-500 transition duration-300">
+                            Seç
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Yearly Plan -->
+                <div class="bg-white dark:bg-gray-700 border-2 border-qr-blue dark:border-blue-400 rounded-2xl p-8 relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-qr-blue dark:bg-blue-500 text-white px-4 py-1 rounded-full text-sm">Avantaj</span>
+                    </div>
+                    
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">5000₺</h3>
+                        <p class="line-through mb-2">&nbsp;9000₺&nbsp;</p>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">Yıllık Paket</p>
+                        
+                        <ul class="space-y-3 mb-8 text-left">
+                            <li class="flex items-center">
+                                <span class="text-green-500 mr-3">✓</span>
+                                <span class="text-gray-600 dark:text-gray-300">1 Yıllık Sanal Menü veya Sanal Randevu Uygulaması</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-green-500 mr-3">✓</span>
+                                <span class="text-gray-600 dark:text-gray-300">1 Yıllık Uygulamanıza Özel Yönetici Paneli</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-green-500 mr-3">✓</span>
+                                <span class="text-gray-600 dark:text-gray-300">1 Yıllık İşletmenize Özel Subdomain</span>
+                            </li>
+                        </ul>
+                        
+                        <button class="w-full plan-gradient text-white py-3 rounded-lg hover:opacity-90 transition duration-300">
+                            Seç
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Unlimited Plan -->
+                <div class="bg-white dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-2xl p-8 relative">
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">25000₺</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">Ömür Boyu</p>
+                        
+                        <ul class="space-y-3 mb-8 text-left">
+                            <li class="flex items-center">
+                                <span class="text-green-500 mr-3">✓</span>
+                                <span class="text-gray-600 dark:text-gray-300">Ömür Boyu Sanal Menü veya Sanal Randevu Uygulaması</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-green-500 mr-3">✓</span>
+                                <span class="text-gray-600 dark:text-gray-300">Ömür Boyu Uygulamanıza Özel Yönetici Paneli</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-green-500 mr-3">✓</span>
+                                <span class="text-gray-600 dark:text-gray-300">1 Yıllık İşletmenize Özel Subdomain</span>
+                            </li>
+                        </ul>
+                        
+                        <button class="w-full bg-gray-900 dark:bg-gray-600 text-white py-3 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-500 transition duration-300">
+                            Seç
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-qr-blue to-blue-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-6">
+                        Bizimle inovasyon yapın
+                    </h2>
+                    <p class="text-xl text-blue-100 dark:text-blue-200 mb-8">
+                        Kolay ve güvenli çözümlerle iş
+                        operasyonlarınızı otomatikleştirin
+                        ve basitleştirin.
+                    </p>
+                    <a href="https://wa.me/905303732142" target="_blank" rel="noopener" rel="noreferrer" class="bg-white text-qr-blue px-8 py-3 rounded-lg text-lg font-medium hover:bg-blue-950 hover:text-white transition duration-300">
+                        İletişime Geç
+                    </a>
+                </div>
+                
+                <div class="relative">
+                    <div class="bg-white bg-opacity-10 rounded-3xl p-8">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="space-y-4">
+                                <a href="https://canva.com/" target="_blank" rel="noopener" rel="noreferrer" class="infrastructure-link bg-purple-800 rounded-xl p-4 h-20 image-container flex items-center justify-center">
+                                    <img src="assets/img/altyapi_1.png" alt="Altyapi" class="protected-image w-1/2">
+                                    <div class="image-overlay"></div>
+                                </a>
+                                <a href="https://tailwindcss.com/" target="_blank" rel="noopener" rel="noreferrer" class="infrastructure-link bg-green-300 rounded-xl p-4 h-32 image-container flex items-center justify-center">
+                                    <img src="assets/img/altyapi_2.png" alt="Altyapi" class="protected-image w-1/2">
+                                    <div class="image-overlay"></div>
+                                </a>
+                            </div>
+                            <div class="space-y-4">
+                                <a href="https://cloudflare.com/" target="_blank" rel="noopener" rel="noreferrer" class="infrastructure-link bg-yellow-600 rounded-xl p-4 h-32 image-container flex items-center justify-center">
+                                    <img src="assets/img/altyapi_3.png" alt="Altyapi" class="protected-image w-1/2">
+                                    <div class="image-overlay"></div>
+                                </a>
+                                <a href="https://nextjs.org/" target="_blank" rel="noopener" rel="noreferrer" class="infrastructure-link bg-gray-900 rounded-xl p-4 h-20 image-container flex items-center justify-center">
+                                    <img src="assets/img/altyapi_4.png" alt="Altyapi" class="protected-image w-1/2">
+                                    <div class="image-overlay"></div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating Elements -->
+                        <div class="absolute top-4 right-4 bg-qr-green rounded-full w-6 h-6 float-animation"></div>
+                        <div class="absolute bottom-8 left-4 bg-yellow-400 rounded-full w-8 h-8 float-animation" style="animation-delay: 0.5s;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 dark:bg-gray-950 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <div class="image-container">
+                        <img class="h-16 w-auto protected-image" src="assets/img/logo_beyaz.png" alt="QR EsnaF Logo">
+                        <div class="image-overlay"></div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <p class="text-gray-400">© 2025 QR EsnaF. Tüm hakları saklıdır.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark Mode Toggle Function
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const button = document.getElementById('darkModeToggle');
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                button.innerHTML = '🌖';
+                localStorage.setItem('darkMode', 'false');
+            } else {
+                html.classList.add('dark');
+                button.innerHTML = '⛅';
+                localStorage.setItem('darkMode', 'true');
+            }
+        }
+        
+        // Back to Top Function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Show/Hide Back to Top Button
+        function toggleBackToTop() {
+            const backToTopBtn = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        }
+        
+        // Initialize dark mode from localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            // Disable right-click context menu
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                return false;
+            });
+            
+            // Disable F12, Ctrl+Shift+I, Ctrl+U
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'F12' || 
+                    (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+                    (e.ctrlKey && e.key === 'u')) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            
+            // Disable text selection on images
+            document.addEventListener('selectstart', function(e) {
+                if (e.target.tagName === 'IMG') {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            
+            // Disable drag and drop for images
+            document.addEventListener('dragstart', function(e) {
+                if (e.target.tagName === 'IMG') {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            
+            const darkMode = localStorage.getItem('darkMode');
+            const button = document.getElementById('darkModeToggle');
+            
+            if (darkMode === 'true') {
+                document.documentElement.classList.add('dark');
+                button.innerHTML = '⛅';
+            } else {
+                button.innerHTML = '🌖';
+            }
+            
+            // Add scroll event listener for back to top button
+            window.addEventListener('scroll', toggleBackToTop);
+            
+            // Add smooth scroll behavior
+            document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // Add intersection observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all sections
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Add click animations to buttons
+            document.querySelectorAll('button').forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+        });
+        
+        // Add custom animation class
+        const style = document.createElement('style');
+        style.textContent = `
+            .animate-fade-in {
+                animation: fadeIn 0.8s ease-in-out;
+            }
+            
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            button {
+                transition: all 0.2s ease;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
