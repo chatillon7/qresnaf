@@ -11,7 +11,9 @@
     <link href="assets/img/only_qr_logo.png" rel="icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
+        // Disable development warnings in production
+        if (typeof tailwind !== 'undefined') {
+            tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
