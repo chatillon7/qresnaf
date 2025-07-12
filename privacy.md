@@ -1,7 +1,7 @@
 # **GİZLİLİK POLİTİKASI**  
 **qresnaf.com ("Şirket")** tarafından yürürlüğe konulmuştur.  
 
-**Son Güncelleme Tarihi:** [12/07/2025]  
+**Son Güncelleme Tarihi:** 12/07/2025
 
 ## **1. GİRİŞ VE GENEL HÜKÜMLER**  
 1.1. Bu Gizlilik Politikası ("Politika"), qresnaf.com ("Site") üzerinden sağlanan hizmetler kapsamında, kullanıcıların kişisel verilerinin toplanması, işlenmesi, saklanması ve paylaşılmasına ilişkin usul ve esasları düzenlemektedir.  
@@ -43,7 +43,7 @@
 7.1. Site, 13 yaş altı kullanıcıların kişisel verilerini bilinçli olarak toplamaz.  
 
 ## **8. ULUSLARARASI VERİ TRANSFERİ**  
-8.1. Veriler, [Ülke] dışındaki sunucularda depolanabilir; bu durumda GDPR veya benzeri düzenlemelere uyulur.  
+8.1. Veriler, Türkiye dışındaki sunucularda depolanabilir; bu durumda GDPR veya benzeri düzenlemelere uyulur.  
 
 ## **9. DEĞİŞİKLİKLER VE YÜRÜRLÜK**  
 9.1. Bu Politika, Site'de yayınlandığı tarihte yürürlüğe girer.  
