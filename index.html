@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.cdnfonts.com/css/telegraf" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/garet" rel="stylesheet">
-	<link href="assets/img/logo.png" rel="icon">
+	<link href="assets/img/only_qr_logo.png" rel="icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -740,8 +740,22 @@
         // Add custom animation class
         const style = document.createElement('style');
         style.textContent = `
+            /* Hide sections initially */
+            section {
+                opacity: 0;
+                transform: translateY(50px);
+                transition: all 0.8s ease-in-out;
+            }
+            
+            /* Hero section should be visible immediately */
+            section:first-of-type {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
             .animate-fade-in {
-                animation: fadeIn 0.8s ease-in-out;
+                opacity: 1 !important;
+                transform: translateY(0) !important;
             }
             
             @keyframes fadeIn {
