@@ -29,6 +29,149 @@
         }
     </script>
     <style>
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 1000px;
+            height: 90vh;
+            max-height: 800px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            transform: scale(0.9) translateY(50px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark .modal-content {
+            background: #1f2937;
+            border: 1px solid #374151;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .modal-body {
+            height: calc(100% - 80px);
+            padding: 0;
+        }
+
+        .pdf-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #f8fafc;
+        }
+
+        .dark .pdf-iframe {
+            background: #374151;
+        }
+
+        .loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #e5e7eb;
+            border-top: 3px solid #1e3a8a;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            background: #fef2f2;
+            color: #dc2626;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+            border: 1px solid #fecaca;
+        }
+
+        .dark .error-message {
+            background: #7f1d1d;
+            color: #fca5a5;
+            border-color: #991b1b;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                height: 95vh;
+                border-radius: 15px;
+            }
+            
+            .modal-header {
+                padding: 15px;
+                border-radius: 15px 15px 0 0;
+            }
+        }
         .hero-bg {
             background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
         }
@@ -416,7 +559,7 @@
     </section>
 
     <!-- Solutions Section -->
-    <section id="solutions" class="py-16 bg-gray-900 dark:bg-gray-950">
+    <section id="solutions" class="py-16 bg-gray-700 dark:bg-gray-950">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-white mb-4">
@@ -539,7 +682,7 @@
     </section>
 
     <!-- Domains Section -->
-    <section id="domain" class="py-16 bg-gray-900 dark:bg-gray-950">
+    <section id="domain" class="py-16 bg-gray-700 dark:bg-gray-950">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-white mb-4">
@@ -547,9 +690,9 @@
                 </h2>
             </div>
             
-            <div class="grid grid-cols-2 md:grid-cols-1 gap-6">
-                <a href="#prices" rel="noopener" rel="noreferrer" class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block">
-                    <h1 class="text-white text-5xl my-2"><span class="text-qr-blue">isletme-adiniz</span>.qresnaf.com</h1>
+            <div class="grid grid-cols-1 md:grid-cols-1">
+                <a href="#prices" rel="noopener" rel="noreferrer" class="card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block">
+                    <h1 class="text-white text-5xl sm:text-2xl md:text-5xl break-all overflow-hidden my-2"><span class="bg-gradient-to-r from-qr-blue via-purple-500 to-qr-blue bg-clip-text text-transparent animate-pulse hover:from-purple-500 hover:via-qr-blue hover:to-purple-400 transition-all duration-1000">isletme-adiniz</span>.qresnaf.com</h1>
                 </a>
             </div>
         </div>
@@ -608,7 +751,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 dark:bg-gray-950 py-12">
+    <footer id="footer" class="bg-gray-900 dark:bg-gray-950 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center mb-4 md:mb-0">
@@ -619,16 +762,104 @@
                 </div>
                 
                 <div class="text-center">
-                    <a href="terms.pdf" target="_blank" rel="noopener" rel="noreferrer" class="text-gray-400">Kullanım Koşulları</a>
-                    <br />
-                    <a href="privacy.pdf" target="_blank" rel="noopener" rel="noreferrer" class="text-gray-400">Gizlilik Politikası</a>
+                    <button onclick="openPDF('terms.pdf', 'Kullanım Koşulları')" class="bg-transparent dark:bg-transparent text-gray-400 px-6 py-3 rounded-lg hover:text-white dark:hover:text-white transition duration-300">
+                        Kullanım Koşulları
+                    </button>
+                    <button onclick="openPDF('privacy.pdf', 'Kullanım Koşulları')" class="bg-transparent dark:bg-transparent text-gray-400 px-6 py-3 rounded-lg hover:text-white dark:hover:text-white transition duration-300">
+                        Gizlilik Politikası
+                    </button>
                     <p class="text-gray-400">© 2025 QR EsnaF. Tüm hakları saklıdır.</p>
                 </div>
             </div>
         </div>
     </footer>
-
+    <div id="pdfModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2 id="modalTitle" class="text-xl font-bold">PDF Görüntüleniyor...</h2>
+                <button class="modal-close" onclick="closeModal()" aria-label="Modalı Kapat">
+                    ×
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="loadingSpinner" class="loading-spinner">
+                    <div class="spinner"></div>
+                    <p class="text-gray-600 dark:text-gray-300">PDF yükleniyor...</p>
+                </div>
+                <iframe id="pdfIframe" class="pdf-iframe" style="display: none;"></iframe>
+                <div id="errorMessage" class="error-message" style="display: none;">
+                    <h3 class="font-bold mb-2">PDF Yüklenemedi</h3>
+                    <p>Dosya bulunamadı veya yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
+        // PDF Modal Functions
+        function openPDF(pdfPath, title) {
+            const modal = document.getElementById('pdfModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const iframe = document.getElementById('pdfIframe');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Reset modal state
+            modalTitle.textContent = title || 'PDF Görüntüleniyor...';
+            iframe.style.display = 'none';
+            loadingSpinner.style.display = 'flex';
+            errorMessage.style.display = 'none';
+            
+            // Show modal
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Load PDF
+            iframe.src = pdfPath;
+            
+            // Handle iframe load event
+            iframe.onload = function() {
+                loadingSpinner.style.display = 'none';
+                iframe.style.display = 'block';
+            };
+            
+            // Handle iframe error
+            iframe.onerror = function() {
+                loadingSpinner.style.display = 'none';
+                errorMessage.style.display = 'block';
+            };
+            
+            // Timeout fallback
+            setTimeout(() => {
+                if (iframe.style.display === 'none' && loadingSpinner.style.display === 'flex') {
+                    loadingSpinner.style.display = 'none';
+                    errorMessage.style.display = 'block';
+                }
+            }, 10000);
+        }
+
+        function closeModal(event) {
+            if (event && event.target !== event.currentTarget) {
+                return;
+            }
+            
+            const modal = document.getElementById('pdfModal');
+            const iframe = document.getElementById('pdfIframe');
+            
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            // Clear iframe source to stop loading
+            setTimeout(() => {
+                iframe.src = '';
+            }, 300);
+        }
+
+        // Keyboard Events - DOMContentLoaded event listener'ının içine ekleyin
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
         // Dark Mode Toggle Function
         function toggleDarkMode() {
             const html = document.documentElement;
