@@ -62,12 +62,17 @@
 <body class="min-h-screen gradient-bg">
     <div class="container mx-auto px-4 py-8">
         <!-- Header -->
-        <div class="text-center mb-12 flex flex-col items-center space-y-4">
-            <img class="h-32 w-auto" src="../assets/img/qr_logo_beyaz.svg" alt="QR EsnaF Logo">
+        <div class="text-center mb-12 flex flex-col items-center space-y-4 animate-fadeIn">
+            <img class="h-32 w-auto animate-fadeIn" src="../assets/img/qr_logo_beyaz.svg" alt="QR EsnaF Logo">
             <p class="text-xl text-white/80 animate-fadeIn">
                 Metninizi veya URL'nizi anında QR koda dönüştürün
             </p>
-            <a href="https://qresnaf.com#domain" rel="noopener" rel="noreferrer" class="text-2xl text-white"><- Geri Dön</a>
+            <a href="https://qresnaf.com#domain" rel="noopener" rel="noreferrer" class="text-2xl text-white hover:text-gray-300 flex items-center justify-center animate-fadeIn">
+                <svg class="w-8 h-8 mr-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Geri Dön
+            </a>
         </div>
 
         <div class="max-w-4xl mx-auto">
