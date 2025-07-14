@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Kod Oluşturucu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+    <link href="https://fonts.cdnfonts.com/css/telegraf" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/garet" rel="stylesheet">
+    <link rel="icon" href="../assets/img/only_qr_logo.ico" type="image/x-icon" />
+    <style>
+        /* Font Override - FORCE APPLICATION */
+        * {
+            font-family: 'Garet', sans-serif !important;
+        }
+        
+        h1, h2, h3, h4, h5, h6, .heading, button, a, stripe-buy-button {
+            font-family: 'Telegraf', serif !important;
+            font-weight: 900 !important;
+            letter-spacing: -0.5px !important;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1f2937 100%);
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .qr-container {
+            transition: all 0.3s ease;
+        }
+        
+        .qr-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .pulse-button {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body class="min-h-screen gradient-bg">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-12 flex flex-col items-center space-y-4">
+            <img class="h-32 w-auto" src="../assets/img/qr_logo_beyaz.svg" alt="QR EsnaF Logo">
+            <p class="text-xl text-white/80 animate-fadeIn">
+                Metninizi veya URL'nizi anında QR koda dönüştürün
+            </p>
+            <a href="https://qresnaf.com#domain" rel="noopener" rel="noreferrer" class="text-2xl text-white"><- Geri Dön</a>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Input Section -->
+                <div class="glass-effect rounded-2xl p-8 animate-fadeIn">
+                    <h2 class="text-2xl font-semibold text-white mb-6 flex items-center">
+                        <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                        </svg>
+                        Metin Girin
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-white/90 text-sm font-medium mb-2">
+                                Metin veya URL
+                            </label>
+                            <textarea 
+                                id="textInput"
+                                class="w-full p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent resize-none transition-all duration-200"
+                                rows="4"
+                                placeholder="Buraya metninizi veya URL'nizi yazın..."
+                            ></textarea>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-white/90 text-sm font-medium mb-2">
+                                    Boyut
+                                </label>
+                                <select id="qrSize" class="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-black focus:outline-none focus:ring-2 focus:ring-blue-400">
+                                    <option value="150">150x150</option>
+                                    <option value="200">200x200</option>
+                                    <option value="250" selected>250x250</option>
+                                    <option value="300">300x300</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-white/90 text-sm font-medium mb-2">
+                                    Renk
+                                </label>
+                                <input 
+                                    type="color" 
+                                    id="qrColor" 
+                                    value="#000000"
+                                    class="w-full px-1 h-12 rounded-lg bg-white/10 border border-white/20 cursor-pointer"
+                                >
+                            </div>
+                        </div>
+                        
+                        <button 
+                            id="generateBtn"
+                            class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-4 px-6 rounded-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
+                        >
+                            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/>
+                            </svg>
+                            QR Kod Oluştur
+                        </button>
+                    </div>
+                </div>
+
+                <!-- QR Code Display Section -->
+                <div class="glass-effect rounded-2xl p-8 animate-fadeIn">
+                    <h2 class="text-2xl font-semibold text-white mb-6 flex items-center">           
+                        QR Kod Önizleme
+                    </h2>
+                    
+                    <div id="qrContainer" class="text-center">
+                        <div id="emptyState" class="py-16">
+                            <svg class="w-24 h-24 mx-auto text-white/30 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/>
+                            </svg>
+                            <p class="text-white/60 text-lg">QR kodunuz burada görünecek</p>
+                        </div>
+                        
+                        <div id="qrDisplay" class="hidden">
+                            <canvas id="qrCanvas" class="mx-auto rounded-lg shadow-lg qr-container bg-white p-1"></canvas>
+                            <div class="mt-6 space-y-3">
+                                <button 
+                                    id="downloadBtn"
+                                    class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-green-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
+                                >
+                                    <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                    </svg>
+                                    İndir
+                                </button>
+                                
+                                <button 
+                                    id="clearBtn"
+                                    class="w-full bg-gradient-to-r from-red-500 to-pink-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-red-600 hover:to-pink-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
+                                >
+                                    <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                    </svg>
+                                    Temizle
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const textInput = document.getElementById('textInput');
+        const generateBtn = document.getElementById('generateBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const qrCanvas = document.getElementById('qrCanvas');
+        const qrSizeSelect = document.getElementById('qrSize');
+        const qrColorInput = document.getElementById('qrColor');
+        const emptyState = document.getElementById('emptyState');
+        const qrDisplay = document.getElementById('qrDisplay');
+
+        let currentQRData = null;
+        let previewTimeout = null;
+
+        // QR kod oluşturma fonksiyonu
+        function generateQR(isPreview = false) {
+            const text = textInput.value.trim();
+            const size = parseInt(qrSizeSelect.value);
+            const color = qrColorInput.value;
+
+            if (!text) {
+                if (!isPreview) {
+                    showNotification('Lütfen bir metin veya URL girin', 'error');
+                }
+                // Boşsa önizlemeyi temizle
+                emptyState.classList.remove('hidden');
+                qrDisplay.classList.add('hidden');
+                currentQRData = null;
+                return;
+            }
+
+            // Sadece manuel oluşturmada loading göster
+            if (!isPreview) {
+                generateBtn.innerHTML = `
+                    <svg class="w-5 h-5 inline mr-2 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
+                    Oluşturuluyor...
+                `;
+                generateBtn.disabled = true;
+            }
+
+            try {
+                // QR kod oluştur
+                const qr = qrcode(0, 'M');
+                qr.addData(text);
+                qr.make();
+                
+                // Canvas'a çiz
+                const ctx = qrCanvas.getContext('2d');
+                const moduleCount = qr.getModuleCount();
+                const quietZone = 1; // 4 modül genişliğinde beyaz kenarlık
+                const totalSize = moduleCount + (quietZone * 2);
+                const cellSize = size / totalSize;
+                
+                qrCanvas.width = size;
+                qrCanvas.height = size;
+                
+                // Tüm canvas'ı beyaz yap (quiet zone dahil)
+                ctx.fillStyle = '#FFFFFF';
+                ctx.fillRect(0, 0, size, size);
+                
+                // QR kod modülleri (quiet zone offset ile)
+                ctx.fillStyle = color;
+                for (let row = 0; row < moduleCount; row++) {
+                    for (let col = 0; col < moduleCount; col++) {
+                        if (qr.isDark(row, col)) {
+                            const x = (col + quietZone) * cellSize;
+                            const y = (row + quietZone) * cellSize;
+                            ctx.fillRect(x, y, cellSize, cellSize);
+                        }
+                    }
+                }
+
+
+                currentQRData = text;
+                emptyState.classList.add('hidden');
+                qrDisplay.classList.remove('hidden');
+                
+                if (!isPreview) {
+                    showNotification('QR kod başarıyla oluşturuldu', 'success');
+                }
+                
+            } catch (error) {
+                if (!isPreview) {
+                    showNotification('QR kod oluşturulurken hata oluştu', 'error');
+                }
+                console.error(error);
+            }
+
+            // Butonu eski haline getir (sadece manuel oluşturmada)
+            if (!isPreview) {
+                generateBtn.innerHTML = `
+                    <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/>
+                    </svg>
+                    QR Kod Oluştur
+                `;
+                generateBtn.disabled = false;
+            }
+        }
+
+        // Canlı önizleme fonksiyonu
+        function livePreview() {
+            clearTimeout(previewTimeout);
+            previewTimeout = setTimeout(() => {
+                generateQR(true);
+            }, 500); // 500ms gecikme ile
+        }
+
+        // QR kod indirme fonksiyonu
+        function downloadQR() {
+            if (!currentQRData) return;
+
+            const link = document.createElement('a');
+            link.download = `qresnaf-${Date.now()}.png`;
+            link.href = qrCanvas.toDataURL();
+            link.click();
+            
+            showNotification('QR kod indirildi', 'success');
+        }
+
+        // Temizleme fonksiyonu
+        function clearQR() {
+            textInput.value = '';
+            currentQRData = null;
+            emptyState.classList.remove('hidden');
+            qrDisplay.classList.add('hidden');
+            showNotification('QR kod temizlendi', 'info');
+        }
+
+        // Bildirim gösterme fonksiyonu
+        function showNotification(message, type) {
+            // Önceki bildirimi kaldır
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+
+            const notification = document.createElement('div');
+            notification.className = `notification fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-lg transform transition-all duration-300 translate-x-full`;
+            
+            const colors = {
+                success: 'bg-green-500 text-white',
+                error: 'bg-red-500 text-white',
+                info: 'bg-blue-500 text-white'
+            };
+
+            notification.className += ` ${colors[type] || colors.info}`;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Animasyon
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+            }, 100);
+            
+            // Otomatik kaldırma
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Event listeners
+        generateBtn.addEventListener('click', () => generateQR(false));
+        downloadBtn.addEventListener('click', downloadQR);
+        clearBtn.addEventListener('click', clearQR);
+
+        // Canlı önizleme için event listeners
+        textInput.addEventListener('input', livePreview);
+        textInput.addEventListener('paste', livePreview);
+
+        // Enter tuşu ile QR kod oluşturma
+        textInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                generateQR(false);
+            }
+        });
+
+        // Ayarlar değiştiğinde otomatik yeniden oluşturma
+        qrSizeSelect.addEventListener('change', function() {
+            if (currentQRData) {
+                generateQR(true);
+            }
+        });
+
+        qrColorInput.addEventListener('change', function() {
+            if (currentQRData) {
+                generateQR(true);
+            }
+        });
+
+        // Başlangıç mesajı
+        window.addEventListener('load', function() {
+            showNotification('QR Kod Oluşturucu\'ya hoş geldiniz', 'info');
+        });
+    </script>
+</body>
+</html>
