@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.cdnfonts.com/css/telegraf" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/garet" rel="stylesheet">
-    <link href="assets/img/only_qr_logo.png" rel="icon">
+    <link rel="icon" href="assets/img/only_qr_logo.ico" type="image/x-icon" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Disable development warnings in production
@@ -200,7 +200,7 @@
             font-family: 'Garet', sans-serif !important;
         }
         
-        h1, h2, h3, h4, h5, h6, .heading, button, a {
+        h1, h2, h3, h4, h5, h6, .heading, button, a, stripe-buy-button {
             font-family: 'Telegraf', serif !important;
             font-weight: 900 !important;
             letter-spacing: -0.5px !important;
@@ -223,11 +223,11 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-center items-center mb-12">
                 <div class="image-container">
-                    <img class="h-32 w-auto dark:hidden float-animation protected-image" style="animation-delay: 0.5s;" src="assets/img/logo_siyah.png" alt="QR EsnaF Logo">
+                    <img class="h-32 w-auto dark:hidden float-animation protected-image" style="animation-delay: 0.5s;" src="assets/img/qr_logo_siyah.svg" alt="QR EsnaF Logo">
                     <div class="image-overlay"></div>
                 </div>
                 <div class="image-container">
-                    <img class="h-32 w-auto hidden dark:block float-animation protected-image" style="animation-delay: 0.5s;" src="assets/img/logo_beyaz.png" alt="QR EsnaF Logo">
+                    <img class="h-32 w-auto hidden dark:block float-animation protected-image" style="animation-delay: 0.5s;" src="assets/img/qr_logo_beyaz.svg" alt="QR EsnaF Logo">
                     <div class="image-overlay"></div>
                 </div>
             </div>
@@ -478,7 +478,7 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Monthly Plan -->
+                <!-- Monthly -->
                 <div class="bg-white dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-2xl p-8 relative">
                     <div class="text-center">
                         <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">750₺</h3>
@@ -498,14 +498,13 @@
                                 <span class="text-gray-600 dark:text-gray-300">1 Aylık İşletmenize Özel Subdomain</span>
                             </li>
                         </ul>
-                        
                         <a href="https://buy.stripe.com/cNi3cv7570Itcf8db2ebu02?locale=tr" target="_blank" rel="noopener" rel="noreferrer" class="w-full px-24 bg-gray-900 dark:bg-gray-600 text-white py-3 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-500 transition duration-300">
                             Seç
                         </a>
                     </div>
                 </div>
                 
-                <!-- Yearly Plan -->
+                <!-- Yearly -->
                 <div class="bg-white dark:bg-gray-700 border-2 border-qr-blue dark:border-blue-400 rounded-2xl p-8 relative">
                     <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
                         <span class="bg-qr-blue dark:bg-blue-500 text-white px-4 py-1 rounded-full text-sm">Avantaj</span>
@@ -530,7 +529,6 @@
                                 <span class="text-gray-600 dark:text-gray-300">1 Yıllık İşletmenize Özel Subdomain</span>
                             </li>
                         </ul>
-                        
                         <a href="https://buy.stripe.com/7sYeVd1KNaj3frk2woebu03?locale=tr" target="_blank" rel="noopener" rel="noreferrer" class="w-full px-24 bg-gray-900 dark:bg-gray-600 text-white py-3 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-500 transition duration-300">
                             Seç
                         </a>
@@ -550,7 +548,7 @@
             </div>
             
             <div class="grid grid-cols-2 md:grid-cols-1 gap-6">
-                <a href="https://isletme-adiniz.qresnaf.com/" target="_blank" rel="noopener" rel="noreferrer" class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block">
+                <a href="#prices" rel="noopener" rel="noreferrer" class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block">
                     <h1 class="text-white text-5xl my-2"><span class="text-qr-blue">isletme-adiniz</span>.qresnaf.com</h1>
                 </a>
             </div>
@@ -615,7 +613,7 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center mb-4 md:mb-0">
                     <div class="image-container">
-                        <img class="h-16 w-auto protected-image" src="assets/img/logo_beyaz.png" alt="QR EsnaF Logo">
+                        <img class="h-16 w-auto protected-image" src="assets/img/qr_logo_beyaz.svg" alt="QR EsnaF Logo">
                         <div class="image-overlay"></div>
                     </div>
                 </div>
