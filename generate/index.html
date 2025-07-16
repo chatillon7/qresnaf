@@ -48,6 +48,15 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
         
         .pulse-button {
             animation: pulse 2s infinite;
@@ -63,7 +72,7 @@
     <div class="container mx-auto px-4 py-8">
         <!-- Header -->
         <div class="text-center mb-12 flex flex-col items-center space-y-4 animate-fadeIn">
-            <img class="h-32 w-auto animate-fadeIn" src="../assets/img/qr_logo_beyaz.svg" alt="QR EsnaF Logo">
+            <img class="h-32 w-auto animate-fadeIn float-animation" src="../assets/img/qr_logo_beyaz.svg" alt="QR EsnaF Logo">
             <p class="text-xl text-white/80 animate-fadeIn">
                 Bağlantı adreslerinizi anında QR koda dönüştürün
             </p>
