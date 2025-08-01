@@ -398,12 +398,12 @@
 <body class="font-opensans dark:bg-gray-900 dark:text-white" style="font-family: 'Open Sans', sans-serif;">
     <!-- Dark Mode Toggle Button -->
     <button class="dark-mode-toggle float-animation" onclick="toggleDarkMode()" id="darkModeToggle">
-        🌖
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon-icon lucide-moon"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
     </button>
 
     <!-- Back to Top Button -->
     <button class="back-to-top float-animation" onclick="scrollToTop()" id="backToTop">
-        ↑
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-icon lucide-arrow-up"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>
     </button>
 
     <!-- Hero Section -->
@@ -613,34 +613,34 @@
             </div>
             
             <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
-                <button onclick="openPDF('menu.pdf', 'Sanal Menü Uygulaması')"  class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block relative overflow-visible">
+                <a href="https://ornek-menu.qresnaf.com" target="_blank" rel="noopener" rel="noreferrer" class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block relative overflow-visible">
                     <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-0.5 rounded-full text-xs font-bold shadow-xl z-20">Demoyu Görüntüle</span>
                     <div class="w-16 h-16 bg-blue-600 rounded-lg mx-auto my-4 flex items-center justify-center">
-                        <span class="text-white text-2xl">🍽️</span>
+                        <span class="text-white text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-utensils-icon lucide-utensils"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg></span>
                     </div>
                     <h3 class="text-white font-medium mb-2">Sanal Menü Uygulaması</h3>
-                </button>
+                </a>
                 
                 <button onclick="openPDF('randevu.pdf', 'Sanal Randevu Uygulaması')"  class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block relative overflow-visible">
-                    <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-xl z-20">Demoyu Görüntüle</span>
+                    <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-xl z-20">Yakında</span>
                     <div class="w-16 h-16 bg-green-600 rounded-lg mx-auto my-4 flex items-center justify-center">
-                        <span class="text-white text-2xl">☎️</span>
+                        <span class="text-white text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-alarm-clock-icon lucide-alarm-clock"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/><path d="M6.38 18.7 4 21"/><path d="M17.64 18.67 20 21"/></svg></span>
                     </div>
                     <h3 class="text-white font-medium mb-2">Sanal Randevu Uygulaması</h3>
                 </button>
                 
                 <button onclick="openPDF('emlak.pdf', 'Sanal Oto Galeri/Emlak Uygulaması')"  class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block relative overflow-visible">
-                    <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-0.5 rounded-full text-xs font-bold shadow-xl z-20">Demoyu Görüntüle</span>
+                    <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-0.5 rounded-full text-xs font-bold shadow-xl z-20">Yakında</span>
                     <div class="w-16 h-16 bg-red-600 rounded-lg mx-auto my-4 flex items-center justify-center">
-                        <span class="text-white text-2xl">🚗</span>
+                        <span class="text-white text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-car-front-icon lucide-car-front"><path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8"/><path d="M7 14h.01"/><path d="M17 14h.01"/><rect width="18" height="8" x="3" y="10" rx="2"/><path d="M5 18v2"/><path d="M19 18v2"/></svg></span>
                     </div>
                     <h3 class="text-white font-medium mb-2">Sanal Oto Galeri/Emlak Uygulaması</h3>
                 </button>
                 
                 <button onclick="openPDF('tanitim.pdf', 'Sanal İşletme Tanıtım Uygulaması')"  class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block relative overflow-visible">
-                    <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-0.5 rounded-full text-xs font-bold shadow-xl z-20">Demoyu Görüntüle</span>
+                    <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-0.5 rounded-full text-xs font-bold shadow-xl z-20">Yakında</span>
                     <div class="w-16 h-16 bg-purple-600 rounded-lg mx-auto my-4 flex items-center justify-center">
-                        <span class="text-white text-2xl">💻</span>
+                        <span class="text-white text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-store-icon lucide-store"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/></svg></span>
                     </div>
                     <h3 class="text-white font-medium mb-2">Sanal İşletme Tanıtım Uygulaması</h3>
                 </button>
@@ -648,7 +648,7 @@
                 <a href="#solutions" rel="noopener" rel="noreferrer" class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block relative overflow-visible">
                     <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-0.5 rounded-full text-xs font-bold shadow-xl z-20">Yakında</span>
                     <div class="w-16 h-16 bg-yellow-600 rounded-lg mx-auto my-4 flex items-center justify-center">
-                        <span class="text-white text-2xl">🛍️</span>
+                        <span class="text-white text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></span>
                     </div>
                     <h3 class="text-white font-medium mb-2">Sanal Mağaza Uygulaması</h3>
                 </a>
@@ -912,11 +912,11 @@
             
             if (html.classList.contains('dark')) {
                 html.classList.remove('dark');
-                button.innerHTML = '🌖';
+                button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon-icon lucide-moon"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>';
                 localStorage.setItem('darkMode', 'false');
             } else {
                 html.classList.add('dark');
-                button.innerHTML = '⛅';
+                button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun-icon lucide-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>';
                 localStorage.setItem('darkMode', 'true');
             }
         }
@@ -978,9 +978,9 @@
             
             if (darkMode === 'true') {
                 document.documentElement.classList.add('dark');
-                button.innerHTML = '⛅';
+                button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun-icon lucide-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>';
             } else {
-                button.innerHTML = '🌖';
+                button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon-icon lucide-moon"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>';
             }
             
             // Add scroll event listener for back to top button
