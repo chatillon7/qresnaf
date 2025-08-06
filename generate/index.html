@@ -11,12 +11,32 @@
     <meta property="og:image" content="https://qresnaf.com/private/assets/images/qrkod_anasayfa.jpg">
     <meta name="robots" content="noimageindex">
     <link rel="canonical" href="https://qresnaf.com/">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.cdnfonts.com/css/telegraf" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/garet" rel="stylesheet">
     <link rel="icon" href="../private/assets/img/only_qr_logo.ico" type="image/x-icon" />
     <title>QR EsnaF | Kod Oluşturucu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+    <script>
+        // Disable development warnings in production
+        if (typeof tailwind !== 'undefined') {
+            tailwind.config = {
+                darkMode: 'class',
+                theme: {
+                    extend: {
+                        colors: {
+                            'qr-blue': '#1e3a8a',
+                            'qr-orange': '#f97316',
+                            'qr-red': '#dc2626',
+                            'qr-green': '#16a34a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <script type="application/ld+json">
     {
     "@context": "https://schema.org",
@@ -55,25 +75,150 @@
     }
     </script>
     <style>
+        .hero-bg {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        }
+        .dark .hero-bg {
+            background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+        }
+        .feature-bg {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        }
+        .dark .feature-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
+        }
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Dark Mode Toggle Button */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #111d3c 0%, #000000 100%);
+            border: none;
+            cursor: pointer;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .dark .dark-mode-toggle {
+            background: linear-gradient(135deg, #9ec8ef 0%, #295f91 100%);
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1e3a8a 0%, #22c55e 100%);
+            border: none;
+            cursor: pointer;
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(100px);
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .back-to-top:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .dark .back-to-top {
+            background: linear-gradient(135deg, #1e3a8a 0%, #16a34a 100%);
+        }
+        
+        /* Dark mode transitions */
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Image Protection Styles */
+        .protected-image {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+            pointer-events: none;
+        }
+        
+        /* Overlay protection for images */
+        .image-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 10;
+            pointer-events: all;
+        }
+        
         /* Font Override - FORCE APPLICATION */
         * {
             font-family: 'Garet', sans-serif !important;
         }
         
-        h1, h2, h3, h4, h5, h6, .heading, button, a, stripe-buy-button {
+        h1, h2, h3, h4, h5, h6, .heading, button, a {
             font-family: 'Telegraf', serif !important;
             font-weight: 900 !important;
             letter-spacing: -0.5px !important;
         }
 
-        .gradient-bg {
-            background: linear-gradient(135deg, #1e3a8a 0%, #1f2937 100%);
-        }
         
         .glass-effect {
             backdrop-filter: blur(20px);
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .dark .glass-effect {
+            background: rgba(17, 24, 39, 0.8);
+            border: 1px solid rgba(75, 85, 99, 0.3);
         }
         
         .qr-container {
@@ -93,15 +238,6 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        .float-animation {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
         
         .pulse-button {
             animation: pulse 2s infinite;
@@ -113,27 +249,52 @@
         }
     </style>
 </head>
-<body class="min-h-screen gradient-bg">
-    <div class="container mx-auto px-4 py-8">
+<body class="dark:bg-gray-900 dark:text-white hero-bg">
+        <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 right-0 bg-white/50 dark:bg-gray-900/50 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <button onclick="window.location.href='../#domain'" class="text-2xl text-gray-900 dark:text-white hover:text-qr-blue dark:hover:text-blue-400 flex items-center justify-center">
+                        <svg class="w-8 h-8 mr-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+        </div>
+    </header>
+    <!-- Dark Mode Toggle Button -->
+    <button class="dark-mode-toggle float-animation" onclick="toggleDarkMode()" id="darkModeToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon-icon lucide-moon"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+    </button>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top float-animation" onclick="scrollToTop()" id="backToTop">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-icon lucide-arrow-up"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>
+    </button>
+
+    <div class="container mx-auto mt-16 px-4 py-8 min-h-screen">
         <!-- Header -->
         <div class="text-center mb-12 flex flex-col items-center space-y-4 animate-fadeIn">
-            <img class="h-32 w-auto animate-fadeIn float-animation" src="../private/assets/img/qr_logo_beyaz.svg" alt="QR EsnaF Logo">
-            <p class="text-xl text-white/80 animate-fadeIn">
+            <div class="image-container">
+                <img class="h-32 w-auto dark:hidden float-animation protected-image" style="animation-delay: 0.5s;" src="../private/assets/img/logo_siyah.png" alt="QR EsnaF Logo">
+                <div class="image-overlay"></div>
+            </div>
+            <div class="image-container">
+                <img class="h-32 w-auto hidden dark:block float-animation protected-image" style="animation-delay: 0.5s;" src="../private/assets/img/logo_beyaz.png" alt="QR EsnaF Logo">
+                <div class="image-overlay"></div>
+            </div>
+            <p class="text-xl text-gray-600 dark:text-gray-300 animate-fadeIn">
                 Bağlantı adreslerinizi anında QR koda dönüştürün
             </p>
-            <a href="https://qresnaf.com#domain" rel="noopener" rel="noreferrer" class="text-2xl text-white hover:text-gray-300 flex items-center justify-center animate-fadeIn">
-                <svg class="w-8 h-8 mr-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                Geri Dön
-            </a>
         </div>
 
         <div class="max-w-4xl mx-auto">
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Input Section -->
-                <div class="glass-effect rounded-2xl p-8 animate-fadeIn">
-                    <h2 class="text-2xl font-semibold text-white mb-6 flex items-center">
+                <div class="glass-effect rounded-2xl p-8 animate-fadeIn bg-white/90 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-600">
+                    <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center">
                         <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                         </svg>
@@ -142,12 +303,12 @@
                     
                     <div class="space-y-4">
                         <div>
-                            <label class="block text-white/90 text-sm font-medium mb-2">
+                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-medium mb-2">
                                 Bağlantı Adresi
                             </label>
                             <textarea 
                                 id="textInput"
-                                class="w-full p-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent resize-none transition-all duration-200"
+                                class="w-full p-4 rounded-lg bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-qr-blue focus:border-transparent resize-none transition-all duration-200"
                                 rows="1"
                                 placeholder="isletme-adiniz.qresnaf.com"
                             ></textarea>
@@ -155,10 +316,10 @@
                         
                         <div class="grid grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-white/90 text-sm font-medium mb-2">
+                                <label class="block text-gray-700 dark:text-gray-300 text-sm font-medium mb-2">
                                     Boyut
                                 </label>
-                                <select id="qrSize" class="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-black focus:outline-none focus:ring-2 focus:ring-blue-400">
+                                <select id="qrSize" class="w-full p-3 rounded-lg bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-qr-blue">
                                     <option value="150">150x150</option>
                                     <option value="200">200x200</option>
                                     <option value="250" selected>250x250</option>
@@ -167,21 +328,21 @@
                             </div>
                             
                             <div>
-                                <label class="block text-white/90 text-sm font-medium mb-2">
+                                <label class="block text-gray-700 dark:text-gray-300 text-sm font-medium mb-2">
                                     Renk
                                 </label>
                                 <input 
                                     type="color" 
                                     id="qrColor" 
                                     value="#000000"
-                                    class="w-full px-1 h-12 rounded-lg bg-white/10 border border-white/20 cursor-pointer"
+                                    class="w-full px-1 h-12 rounded-lg bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 cursor-pointer"
                                 >
                             </div>
                         </div>
                         
                         <button 
                             id="generateBtn"
-                            class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-4 px-6 rounded-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
+                            class="w-full bg-qr-blue text-white py-4 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
                         >
                             <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/>
@@ -192,17 +353,17 @@
                 </div>
 
                 <!-- QR Code Display Section -->
-                <div class="glass-effect rounded-2xl p-8 animate-fadeIn">
-                    <h2 class="text-2xl font-semibold text-white mb-6 flex items-center">           
+                <div class="glass-effect rounded-2xl p-8 animate-fadeIn bg-white/90 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-600">
+                    <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center">           
                         QR Kod Önizleme
                     </h2>
                     
                     <div id="qrContainer" class="text-center">
                         <div id="emptyState" class="py-16">
-                            <svg class="w-24 h-24 mx-auto text-white/30 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-24 h-24 mx-auto text-gray-400 dark:text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/>
                             </svg>
-                            <p class="text-white/60 text-lg">QR kodunuz burada görünecek</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-lg">QR kodunuz burada görünecek</p>
                         </div>
                         
                         <div id="qrDisplay" class="hidden">
@@ -210,7 +371,7 @@
                             <div class="mt-6 space-y-3">
                                 <button 
                                     id="downloadBtn"
-                                    class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-green-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
+                                    class="w-full bg-qr-green text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
                                 >
                                     <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
@@ -220,7 +381,7 @@
                                 
                                 <button 
                                     id="clearBtn"
-                                    class="w-full bg-gradient-to-r from-red-500 to-pink-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-red-600 hover:to-pink-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
+                                    class="w-full bg-qr-red text-white py-3 px-6 rounded-lg font-semibold hover:bg-red-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
                                 >
                                     <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
@@ -235,6 +396,40 @@
         </div>
     </div>
     <script>
+        // Dark Mode Toggle Function
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const button = document.getElementById('darkModeToggle');
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon-icon lucide-moon"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>';
+                localStorage.setItem('darkMode', 'false');
+            } else {
+                html.classList.add('dark');
+                button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun-icon lucide-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>';
+                localStorage.setItem('darkMode', 'true');
+            }
+        }
+        
+        // Back to Top Function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Show/Hide Back to Top Button
+        function toggleBackToTop() {
+            const backToTopBtn = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        }
+
         const textInput = document.getElementById('textInput');
         const generateBtn = document.getElementById('generateBtn');
         const downloadBtn = document.getElementById('downloadBtn');
@@ -330,7 +525,7 @@
                     <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/>
                     </svg>
-                    QR Kod Oluştur
+                    Oluştur
                 `;
                 generateBtn.disabled = false;
             }
@@ -431,8 +626,57 @@
             }
         });
 
-        // Başlangıç mesajı
-        window.addEventListener('load', function() {
+        // Initialize dark mode from localStorage and other settings
+        document.addEventListener('DOMContentLoaded', function() {
+            // Disable right-click context menu
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                return false;
+            });
+            
+            // Disable F12, Ctrl+Shift+I, Ctrl+U
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'F12' || 
+                    (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+                    (e.ctrlKey && e.key === 'u')) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            
+            // Disable text selection on images
+            document.addEventListener('selectstart', function(e) {
+                if (e.target.tagName === 'IMG') {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            
+            // Disable drag and drop for images
+            document.addEventListener('dragstart', function(e) {
+                if (e.target.tagName === 'IMG') {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            
+            const darkMode = localStorage.getItem('darkMode');
+            const button = document.getElementById('darkModeToggle');
+            
+            if (darkMode === 'true') {
+                document.documentElement.classList.add('dark');
+                button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun-icon lucide-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>';
+            } else {
+                button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon-icon lucide-moon"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>';
+            }
+            
+            // Add scroll event listener for back to top button
+            window.addEventListener('scroll', toggleBackToTop);
+            
+            // Add smooth scroll behavior
+            document.documentElement.style.scrollBehavior = 'smooth';
+
+            // Başlangıç mesajı
             showNotification('QR Kod Oluşturucu\'ya hoş geldiniz', 'info');
         });
     </script>
