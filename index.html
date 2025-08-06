@@ -397,7 +397,7 @@
 </head>
 <body class="dark:bg-gray-900 dark:text-white">
     <!-- Header Navigation -->
-    <header class="fixed top-0 left-0 right-0 bg-white/50 dark:bg-gray-900/50 z-40 shadow-sm">
+    <header class="fixed top-0 left-0 right-0 bg-white/50 dark:bg-gray-900/50 backdrop-blur-md z-40 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
@@ -411,12 +411,12 @@
                 <!-- Navigation Links -->
                 <div class="hidden md:flex items-center space-x-6">
                     <a href="#prices" class="text-gray-700 dark:text-gray-300 hover:text-qr-blue dark:hover:text-blue-400 transition duration-300">Fiyatlar</a>
-                    <a href="#footer" class="text-gray-700 dark:text-gray-300 hover:text-qr-blue dark:hover:text-blue-400 transition duration-300">İletişim</a>
+                    <a href="#contact" class="text-gray-700 dark:text-gray-300 hover:text-qr-blue dark:hover:text-blue-400 transition duration-300">İletişim</a>
                     <button onclick="openLoginModal()" class="text-qr-blue hover:text-blue-700 font-medium transition duration-300">
                         Giriş Yap
                     </button>
                     <button onclick="openLoginModal(); showRegisterForm();" class="bg-qr-blue text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
-                        Kayıt Ol
+                        Kaydol
                     </button>
                 </div>
 
@@ -434,12 +434,12 @@
             <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-gray-900 border-t dark:border-gray-700">
                 <div class="px-4 py-4 space-y-4">
                     <a href="#prices" class="block text-gray-700 dark:text-gray-300 hover:text-qr-blue dark:hover:text-blue-400 transition duration-300">Fiyatlar</a>
-                    <a href="#footer" class="block text-gray-700 dark:text-gray-300 hover:text-qr-blue dark:hover:text-blue-400 transition duration-300">İletişim</a>
+                    <a href="#contact" class="block text-gray-700 dark:text-gray-300 hover:text-qr-blue dark:hover:text-blue-400 transition duration-300">İletişim</a>
                     <button onclick="openLoginModal()" class="block w-full text-left text-qr-blue hover:text-blue-700 font-medium transition duration-300">
                         Giriş Yap
                     </button>
                     <button onclick="openLoginModal(); showRegisterForm();" class="block w-full bg-qr-blue text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
-                        Kayıt Ol
+                        Kaydol
                     </button>
                 </div>
             </div>
@@ -477,14 +477,14 @@
                     <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
                         QR EsnaF ile büyümeye başlayın
                     </p>
-                    <a href="#prices" class="bg-qr-blue text-white px-16 py-3 rounded-lg shadow-lg text-lg font-medium hover:bg-blue-100 hover:text-qr-blue transition duration-300">
+                    <a href="#solutions" class="bg-qr-blue text-white px-16 py-3 rounded-lg shadow-lg text-lg font-medium hover:bg-blue-100 hover:text-qr-blue transition duration-300">
                         Başla
                     </a>
                     
                     <!-- QR Code -->
                     <div class="mt-8">
-                        <a href="https://billing.stripe.com/p/login/bJe4gzfBD4YJ6UOb2Uebu00" target="_blank" rel="noopener" rel="noreferrer" class="bg-purple-950 text-white px-16 py-3 rounded-lg shadow-lg text-lg font-medium hover:bg-purple-200 hover:text-purple-950 transition duration-300">
-                            Aboneliğini Yönet
+                        <a href="#" target="_blank" rel="noopener" rel="noreferrer" class="bg-purple-950 text-white px-16 py-3 rounded-lg shadow-lg text-lg font-medium hover:bg-purple-200 hover:text-purple-950 transition duration-300">
+                            Müşteri Paneli
                         </a>
                         <br />
                         <div class="bg-white p-1 rounded-lg shadow-lg inline-block image-container mt-8">
@@ -653,59 +653,6 @@
         </div>
     </section>
 
-    <!-- Solutions Section -->
-    <section id="solutions" class="py-16 bg-gray-700 dark:bg-gray-950">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-white mb-4">
-                    QR EsnaF çözümleriyle süreçlerinizi kolaylaştırın
-                </h2>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
-                <a href="https://ornek-menu.qresnaf.com" target="_blank" rel="noopener" rel="noreferrer" class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block relative overflow-visible">
-                    <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-0.5 rounded-full text-xs font-bold shadow-xl z-20">Demoyu Görüntüle</span>
-                    <div class="w-16 h-16 bg-blue-600 rounded-lg mx-auto my-4 flex items-center justify-center">
-                        <span class="text-white text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-utensils-icon lucide-utensils"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg></span>
-                    </div>
-                    <h3 class="text-white font-medium mb-2">Sanal Menü Uygulaması</h3>
-                </a>
-                
-                <button onclick="openPDF('randevu.pdf', 'Sanal Randevu Uygulaması')"  class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block relative overflow-visible">
-                    <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-xl z-20">Yakında</span>
-                    <div class="w-16 h-16 bg-green-600 rounded-lg mx-auto my-4 flex items-center justify-center">
-                        <span class="text-white text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-alarm-clock-icon lucide-alarm-clock"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/><path d="M6.38 18.7 4 21"/><path d="M17.64 18.67 20 21"/></svg></span>
-                    </div>
-                    <h3 class="text-white font-medium mb-2">Sanal Randevu Uygulaması</h3>
-                </button>
-                
-                <button onclick="openPDF('emlak.pdf', 'Sanal Oto Galeri/Emlak Uygulaması')"  class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block relative overflow-visible">
-                    <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-0.5 rounded-full text-xs font-bold shadow-xl z-20">Yakında</span>
-                    <div class="w-16 h-16 bg-red-600 rounded-lg mx-auto my-4 flex items-center justify-center">
-                        <span class="text-white text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-car-front-icon lucide-car-front"><path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8"/><path d="M7 14h.01"/><path d="M17 14h.01"/><rect width="18" height="8" x="3" y="10" rx="2"/><path d="M5 18v2"/><path d="M19 18v2"/></svg></span>
-                    </div>
-                    <h3 class="text-white font-medium mb-2">Sanal Oto Galeri/Emlak Uygulaması</h3>
-                </button>
-                
-                <button onclick="openPDF('tanitim.pdf', 'Sanal İşletme Tanıtım Uygulaması')"  class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block relative overflow-visible">
-                    <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-0.5 rounded-full text-xs font-bold shadow-xl z-20">Yakında</span>
-                    <div class="w-16 h-16 bg-purple-600 rounded-lg mx-auto my-4 flex items-center justify-center">
-                        <span class="text-white text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-store-icon lucide-store"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/></svg></span>
-                    </div>
-                    <h3 class="text-white font-medium mb-2">Sanal İşletme Tanıtım Uygulaması</h3>
-                </button>
-                
-                <a href="#solutions" rel="noopener" rel="noreferrer" class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block relative overflow-visible">
-                    <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-0.5 rounded-full text-xs font-bold shadow-xl z-20">Yakında</span>
-                    <div class="w-16 h-16 bg-yellow-600 rounded-lg mx-auto my-4 flex items-center justify-center">
-                        <span class="text-white text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></span>
-                    </div>
-                    <h3 class="text-white font-medium mb-2">Sanal Mağaza Uygulaması</h3>
-                </a>
-            </div>
-        </div>
-    </section>
-
     <!-- Pricing Section -->
     <section id="prices" class="py-16 bg-white dark:bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -776,7 +723,60 @@
         </div>
     </section>
 
-    <!-- Domains Section -->
+    <!-- Solutions Section -->
+    <section id="solutions" class="py-16 bg-gray-700 dark:bg-gray-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4">
+                    QR EsnaF çözümleriyle süreçlerinizi kolaylaştırın
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+                <a href="https://ornek-menu.qresnaf.com" target="_blank" rel="noopener" rel="noreferrer" class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block relative overflow-visible">
+                    <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-0.5 rounded-full text-xs font-bold shadow-xl z-20">Demoyu Görüntüle</span>
+                    <div class="w-16 h-16 bg-blue-600 rounded-lg mx-auto my-4 flex items-center justify-center">
+                        <span class="text-white text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-utensils-icon lucide-utensils"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg></span>
+                    </div>
+                    <h3 class="text-white font-medium mb-2">Sanal Menü Uygulaması</h3>
+                </a>
+                
+                <button onclick="openPDF('randevu.pdf', 'Sanal Randevu Uygulaması')"  class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block relative overflow-visible">
+                    <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-xl z-20">Yakında</span>
+                    <div class="w-16 h-16 bg-green-600 rounded-lg mx-auto my-4 flex items-center justify-center">
+                        <span class="text-white text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-alarm-clock-icon lucide-alarm-clock"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/><path d="M6.38 18.7 4 21"/><path d="M17.64 18.67 20 21"/></svg></span>
+                    </div>
+                    <h3 class="text-white font-medium mb-2">Sanal Randevu Uygulaması</h3>
+                </button>
+                
+                <button onclick="openPDF('emlak.pdf', 'Sanal Oto Galeri/Emlak Uygulaması')"  class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block relative overflow-visible">
+                    <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-0.5 rounded-full text-xs font-bold shadow-xl z-20">Yakında</span>
+                    <div class="w-16 h-16 bg-red-600 rounded-lg mx-auto my-4 flex items-center justify-center">
+                        <span class="text-white text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-car-front-icon lucide-car-front"><path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8"/><path d="M7 14h.01"/><path d="M17 14h.01"/><rect width="18" height="8" x="3" y="10" rx="2"/><path d="M5 18v2"/><path d="M19 18v2"/></svg></span>
+                    </div>
+                    <h3 class="text-white font-medium mb-2">Sanal Oto Galeri/Emlak Uygulaması</h3>
+                </button>
+                
+                <button onclick="openPDF('tanitim.pdf', 'Sanal İşletme Tanıtım Uygulaması')"  class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block relative overflow-visible">
+                    <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-0.5 rounded-full text-xs font-bold shadow-xl z-20">Yakında</span>
+                    <div class="w-16 h-16 bg-purple-600 rounded-lg mx-auto my-4 flex items-center justify-center">
+                        <span class="text-white text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-store-icon lucide-store"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/></svg></span>
+                    </div>
+                    <h3 class="text-white font-medium mb-2">Sanal İşletme Tanıtım Uygulaması</h3>
+                </button>
+                
+                <a href="#solutions" rel="noopener" rel="noreferrer" class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block relative overflow-visible">
+                    <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-0.5 rounded-full text-xs font-bold shadow-xl z-20">Yakında</span>
+                    <div class="w-16 h-16 bg-yellow-600 rounded-lg mx-auto my-4 flex items-center justify-center">
+                        <span class="text-white text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></span>
+                    </div>
+                    <h3 class="text-white font-medium mb-2">Sanal Mağaza Uygulaması</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Generate Section -->
     <section id="domain" class="py-16 bg-gray-700 dark:bg-gray-950">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
@@ -793,8 +793,8 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-16 bg-gradient-to-r from-qr-blue to-blue-700">
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gradient-to-r from-qr-blue to-blue-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
@@ -873,13 +873,13 @@
                     </form>
                     <p class="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
                         Hesabınız yok mu? 
-                        <button onclick="showRegisterForm()" class="text-qr-blue hover:underline">Kayıt Olun</button>
+                        <button onclick="showRegisterForm()" class="text-qr-blue hover:underline">Kaydolun</button>
                     </p>
                 </div>
 
                 <!-- Register Form -->
                 <div id="registerForm" class="hidden">
-                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Kayıt Ol</h2>
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Kaydol</h2>
                     <form onsubmit="handleRegister(event)">
                         <div class="mb-4">
                             <label for="registerName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Ad Soyad</label>
@@ -898,7 +898,7 @@
                             <input type="password" id="registerPassword" required class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-qr-blue dark:bg-gray-700 dark:text-white">
                         </div>
                         <button type="submit" class="w-full bg-qr-blue text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300">
-                            Kayıt Ol
+                            Kaydol
                         </button>
                     </form>
                     <p class="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
@@ -1084,11 +1084,11 @@
 
                 if (data.success) {
                     closeAuthModal();
-                    document.getElementById('successTitle').textContent = 'Kayıt Başarılı!';
+                    document.getElementById('successTitle').textContent = 'Kaydolma Başarılı!';
                     document.getElementById('successMessage').textContent = 'E-posta adresinize doğrulama linki gönderildi. Lütfen e-postanızı kontrol edin.';
                     document.getElementById('successModal').classList.remove('hidden');
                 } else {
-                    alert(data.message || 'Kayıt başarısız oldu.');
+                    alert(data.message || 'Kaydolma başarısız oldu.');
                 }
             } catch (error) {
                 console.error('Register error:', error);
